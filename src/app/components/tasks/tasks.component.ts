@@ -5,11 +5,12 @@ import { TaskService } from '../../services/task.service';
 import { Task } from '../../Task';
 
 import { TaskItemComponent } from '../task-item/task-item.component';
+import { AddTaskComponent } from '../add-task/add-task.component'
 
 @Component({
   selector: 'app-tasks',
   standalone: true,
-  imports: [CommonModule, TaskItemComponent],
+  imports: [CommonModule, TaskItemComponent, AddTaskComponent],
   templateUrl: './tasks.component.html',
   styleUrl: './tasks.component.css'
 })
@@ -38,5 +39,10 @@ export class TasksComponent {
       .updateTaskReminder(task)
       .subscribe();
     // console.log(task.reminder);
+  }
+
+  addTask(task: Task)
+  {
+    this.taskService.addTask(task).subscribe((task)=> this.tasks.push(task));
   }
 }
