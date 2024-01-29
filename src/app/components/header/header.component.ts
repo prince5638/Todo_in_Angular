@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { UiService } from '../../services/ui.service';
+import { Subscription } from 'rxjs';
 
 // component imports only
 import { ButtonComponent } from '../button/button.component';
@@ -10,12 +12,19 @@ import { ButtonComponent } from '../button/button.component';
   templateUrl: './header.component.html',
   styleUrl: './header.component.css'
 })
+
 export class HeaderComponent {
   title: string = "Task Tracker";
-  
-  toggleAddTask(): void{
-    // console.log("btnClick => ToggleAddTask function called for btnClick custome event, on clicking an ADD button");
+  showAddTask: boolean = false;
+  subscription: Subscription;
 
-    console.log("toggle!!!");
+  constructor(private uiService: UiService) {
+    this.subscription = this.uiService
+      .onToggle()
+      .subscribe((value)=>(this.showAddTask=value))
+  }
+
+  toggleAddTask(): void{
+    this.uiService.toggleAddTask();
   }
 }
