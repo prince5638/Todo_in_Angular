@@ -12,7 +12,7 @@ export class ButtonComponent {
   @Input() text:string = "";
   @Input() color:string = "";
 
-  // Creating an custome event named as btnClick by using the EventEmmiter cunstructore of the class EventEmmiter.
+  // Creating an custome event named as btnClick by using the EventEmmiter constructore of the class EventEmmiter.
   @Output() btnClick = new EventEmitter();
 
   onClick(): void{

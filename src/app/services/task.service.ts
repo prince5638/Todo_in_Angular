@@ -1,17 +1,34 @@
 import { Injectable } from '@angular/core';
-import { Observable,of } from 'rxjs';
+import { HttpClient, HttpHeaders} from '@angular/common/http';
+
+
+
+// no need to import the of because here httpClient itself return the observable ... no need to convert the return into an observable
+// import { Observable,of } from 'rxjs';
+import { Observable } from 'rxjs';
+
 import { Task } from '../Task';
-import { TASKS } from '../mock-task';
+
+// Now there is no need for this import because we are using an HttpClient for fetching data from api
+// import { TASKS } from '../mock-task';
 
 @Injectable({
   providedIn: 'root'
 })
 export class TaskService {
 
-  constructor() { }
+  private apiUrl = "http://localhost:5000/tasks";
+
+  constructor(private http: HttpClient) { }
 
   getTask(): Observable<Task[]>{
-    const tasks = of(TASKS);
-    return tasks;
+    // fetching tasks from the mock-task.ts
+    // const tasks = of(TASKS);
+    // return tasks;
+
+    // fetching task from an api
+    return this.http.get<Task[]>(this.apiUrl)
   }
+
+  
 }

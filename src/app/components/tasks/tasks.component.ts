@@ -21,4 +21,6 @@ export class TasksComponent {
   ngOnInit(): void{
     this.taskService.getTask().subscribe((tasks)=> this.tasks = tasks);
   }
+
+  
 }
