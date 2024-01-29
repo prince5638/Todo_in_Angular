@@ -14,6 +14,7 @@ import { faTimes } from '@fortawesome/free-solid-svg-icons';
 export class TaskItemComponent {
   @Input() task: Task = {text: "",day: "", reminder: false};
   @Output() onDeleteTask: EventEmitter<Task> = new EventEmitter();
+  @Output() onToggleReminder: EventEmitter<Task> = new EventEmitter();
  
   faTimes = faTimes;
 
@@ -23,5 +24,9 @@ export class TaskItemComponent {
     this.onDeleteTask.emit(task);
   }
 
-  
+  // Toggling the reminder
+  onToggle(task: any)
+  {
+    this.onToggleReminder.emit(task);
+  }
 }

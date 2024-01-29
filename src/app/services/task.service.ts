@@ -1,7 +1,11 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders} from '@angular/common/http';
 
-
+const httpOptions = {
+  headers: new HttpHeaders({
+    'Content-Type': 'application/json'
+  })
+}
 
 // no need to import the of because here httpClient itself return the observable ... no need to convert the return into an observable
 // import { Observable,of } from 'rxjs';
@@ -36,4 +40,9 @@ export class TaskService {
     return this.http.delete<Task>(url);
   }
 
+  updateTaskReminder(task: Task): Observable<Task>
+  {
+    const url = `${this.apiUrl}/${task.id}`;
+    return this.http.put<Task>(url, task, httpOptions);
+  }
 }
