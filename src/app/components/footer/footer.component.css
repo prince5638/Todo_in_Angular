@@ -1,11 +1,32 @@
-footer{
-    margin-top: 30px;
-    text-align: center;
+/* my-component.component.css */
+
+body {
+    margin: 0;
+    padding: 0;
 }
-span{
-    font-weight: bold;
+  
+.content {
+/* Add some styles for the rest of the page content (adjust as needed) */
+margin-bottom: 60px; /* Ensure enough space for the fixed footer */
 }
 
+footer {
+background-color: #333;
+color: white;
+text-align: center;
+padding: 5px;
+position: fixed;
+bottom: 0;
+width: 100%;
+}
+
+footer span {
+color: #ffcc00; /* Adjust the color as needed */
+}
+
+p{
+    margin-bottom: 0rem;
+}
 .rights{
     font-style: italic;
 }

@@ -15,6 +15,7 @@ import { AddTaskComponent } from '../add-task/add-task.component'
   styleUrl: './tasks.component.css'
 })
 export class TasksComponent {
+  title = "Task List"
   tasks: Task[] = [];
 
   constructor(private taskService: TaskService){}

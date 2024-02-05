@@ -5,6 +5,7 @@ import { UiService } from '../../services/ui.service';
 import { Subscription } from 'rxjs';
 
 import { Task } from '../../Task';
+import { TaskService } from '../../services/task.service';
 
 @Component({
   selector: 'app-add-task',
@@ -17,6 +18,7 @@ export class AddTaskComponent {
 
   @Output() onAddTask: EventEmitter<Task> = new EventEmitter();
 
+  title = "Add Task";
   text: string = "";
   day: string = "";
   reminder: boolean = false;
@@ -24,12 +26,14 @@ export class AddTaskComponent {
   showAddTask: boolean = false;
   subscription: Subscription;
 
-  constructor(private uiService: UiService)
+  constructor(private uiService: UiService, private taskService: TaskService)
   {
     this.subscription = this.uiService
       .onToggle()
       .subscribe((value)=> (this.showAddTask = value));
   }
+
+  tasks: Task[] = [];
 
   onSubmit()
   {
@@ -38,12 +42,15 @@ export class AddTaskComponent {
       alert('Please add a task!');
       return ;
     }
-
+    
     const newTask = {
       text: this.text,
       day: this.day,
       reminder: this.reminder
     }
+
+    this.taskService.addTask(newTask).subscribe((task)=> this.tasks.push(task));
+
 
     // TODO - emit event
     this.onAddTask.emit(newTask);
